@@ -71,15 +71,15 @@ const Sidebar = () => {
       name: "build",
       icon: RiBuilding3Line,   
       menus: [
-        {keymenu: 'auth', nombre: 'auth'},{keymenu: 'settings', nombre: 'Reporte de Transferencias V03'},{keymenu: 'stroage', nombre: 'stroage'},{keymenu: 'hosting', nombre: 'hosting'}
+        {keymenu: 'auth', nombre: 'Viviendas'},{keymenu: 'settings', nombre: 'Hogares'},{keymenu: 'stroage', nombre: 'Visitas'},{keymenu: 'hosting', nombre: 'Personas'},{keymenu: 'pobla', nombre: 'Poblacion'},{keymenu: 'sec23', nombre: 'Seccion II-III'},{keymenu: 'sec301', nombre: 'Seccion III-01'},{keymenu: 'sec4', nombre: 'Seccion IV'}
        ]
       
-    },
+    }/*,
     {
       name: "analytics",
       icon: TbReportAnalytics,
       menus: [{keymenu: 'dashboard', nombre: 'dashboard'},{keymenu: 'realtime', nombre: 'realtime'},{keymenu: 'events', nombre: 'events'}]
-    },
+    },*/
   ];
 
   return (
@@ -101,11 +101,11 @@ const Sidebar = () => {
       >
         <div className="flex items-center gap-2.5 font-medium border-b py-3 border-slate-300  mx-3">
           <img
-            src="../assets/img/ineidashboardmain.png"
+            src="./assets/ineidashboardmain.png"
             width={105}
             alt={105}
           />
-          <span className="text-xl whitespace-pre">Sys Verif1.0</span>
+          <span className="text-xl whitespace-pre">Sys Verif2.0</span>
         </div>
 
         <div className="flex flex-col  h-full">
@@ -113,26 +113,26 @@ const Sidebar = () => {
             <li>
               <NavLink to={"/allapp"} className="link">
                 <AiOutlineAppstore size={23} className="min-w-max" />
-                All Apps
+                Cargar Archivo de Datos
               </NavLink>
             </li>
             <li>
               <NavLink to={"/authentication"} className="link">
                 <BsPerson size={23} className="min-w-max" />
-                <p className="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">Authentication y Desarrollo profesional</p>
+                <p className="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">Usuarios</p>
               </NavLink>
             </li>
             <li>
               <NavLink to={"/stroage"} className="link">
                 <HiOutlineDatabase size={23} className="min-w-max" />
-                Stroage
+                Almacenamiento
               </NavLink>
             </li>
 
             {(open || isTabletMid) && (
               <div className="border-y py-5 border-slate-300 ">
                 <small className="pl-3 text-slate-500 inline-block mb-2">
-                  Product categories
+                  Captura de Datos CPV 0301
                 </small>
                 {subMenusList?.map((menu) => (
                   <div key={menu.name} className="flex flex-col gap-1">
@@ -153,7 +153,7 @@ const Sidebar = () => {
               <div className="flex border-y border-slate-300 p-4 items-center justify-between">
                 <div>
                   <p>DNCE</p>
-                  <small>INEI@2023</small>
+                  <small>INEI@2024</small>
                 </div>
                 <p className="text-teal-500 py-1.5 px-3 text-xs bg-teal-50 rounded-xl">
                   Actualización

@@ -1,6 +1,9 @@
 import { useRef, useState, useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import google from "/assets/google.svg";
+import image from "/assets/image.jpg";
+
 
 import axios from '../api/axios';
 //const LOGIN_URL = '/auth';
@@ -42,16 +45,38 @@ const Login = () => {
 
             //return this.http.get(`${apiUrl}/${credentials.login}/${credentials.password}`,  reqestuOptions);
 
-            const headers = { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJub21icmUiOiJDYXJsb3MgYmFycmllbnRvcyIsImVtYWlsIjoiY2FybG9zYmFyczhAZ21haWwuY29tIn0sImlhdCI6MTY2NjU3NzQ0NX0.IU5I4jE-7VWZ55jHAPVsqlaWYzndqJQYdc1CSGEzWwA' };
+            /*const headers = { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJub21icmUiOiJDYXJsb3MgYmFycmllbnRvcyIsImVtYWlsIjoiY2FybG9zYmFyczhAZ21haWwuY29tIn0sImlhdCI6MTY2NjU3NzQ0NX0.IU5I4jE-7VWZ55jHAPVsqlaWYzndqJQYdc1CSGEzWwA' };
             const response = await axios.get(`${user}/${pwd}`,
             { headers }
-            );
+            );*/
+            
+            //const response = await fetch('/api/login', {
+            const response = await fetch('https://cnegt1678c.execute-api.us-west-2.amazonaws.com/dev/login', {
+            method: 'POST',
+            headers: {
+              'x-api-key': 'Sq3HsKJYs8areRZ5jJInS6TqcZiu3WHh66biTDmM',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username: user, password: pwd }),
+          });
 
+          const datarr = [1984,5150];
+          
+          let accesstok
+          if (response.ok) {
+            const data = await response.json();
+            accesstok = data.token;
+            console.log('Access Token tete :', accesstok);
+            // Puedes realizar acciones adicionales con el token, como almacenarlo
+
+            ////////
+            console.log('hola negativo juju : ');
             //console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response));
-            const accessToken = response?.data?.accessToken;
+            console.log(response);
+            const accessToken = accesstok;
             console.log(accessToken);
-            const roles = response?.data?.roles;            
+            const roles = datarr; //response?.data?.roles;            
             console.log(roles);
             console.log('holaaa ceroo');
             console.log(`${user}/${pwd}`);
@@ -61,6 +86,13 @@ const Login = () => {
             setPwd('');
             
             navigate(from, { replace: true });
+            ////////
+
+          } else {
+            setErrMsg('Login Failed');
+         }
+
+            
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -133,18 +165,18 @@ const Login = () => {
           <button
             className="w-full border border-gray-300 text-md p-2 rounded-lg mb-6 hover:bg-black hover:text-white"
           >
-            <img src="../assets/img/google.svg" alt="img" className="w-6 h-6 inline mr-2" />
+            <img src={google} alt="img" className="w-6 h-6 inline mr-2" />
             Sign in with Google
           </button>
           <div className="text-center text-gray-400">
             
-            <span className="font-bold text-black">Inei@2023</span>
+            <span className="font-bold text-black">Inei@2024</span>
           </div>
         </div>
       
         <div className="relative">
           <img
-            src="../assets/img/image.jpg"
+            src={image}
             alt="img"
             className="w-[400px] h-full hidden rounded-r-2xl md:block object-cover"
           />
