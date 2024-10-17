@@ -34,15 +34,36 @@ const SubMenu = ({ data }) => {
         {data.menus?.map((menu) => (
         //menu?.map((det) => (
 
-          <li key={menu.keymenu}>
-            {/* className="hover:text-blue-600 hover:font-medium" */}
+         /* <li key={menu.keymenu}>
+            {}
             <NavLink
               to={`/${data.name}/${menu.keymenu}`}
               className="link !bg-transparent capitalize"
             >
               {menu.nombre}
             </NavLink>
+          </li>*/
+
+          <ul className="space-y-2">
+          <li className="flex items-center">
+            <svg className="h-6 w-6 flex-none fill-sky-100 stroke-sky-500 stroke-2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="11" />
+              <path d="m8 13 2.165 2.165a1 1 0 0 0 1.521-.126L16 9" fill="none" />
+            </svg>
+            <p className="ml-2">              
+              <code className="text-sm font-bold text-gray-900">
+              <NavLink
+              to={`/${data.name}/${menu.keymenu}`}
+              className="link !bg-transparent capitalize"
+            >
+              {menu.nombre}
+            </NavLink>
+              </code>
+            </p>
           </li>
+          </ul>
+
+
         //))
         ))}
 

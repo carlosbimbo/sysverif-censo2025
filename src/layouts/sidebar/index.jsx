@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import { useRef } from "react";
 import SubMenu from "./SubMenu";
 import { motion } from "framer-motion";
@@ -15,7 +15,10 @@ import { useMediaQuery } from "react-responsive";
 import { MdMenu } from "react-icons/md";
 import { NavLink, useLocation, useRoutes } from "react-router-dom";
 
+import AuthContext from '../../context/AuthProvider';
+
 const Sidebar = () => {
+  const { auth } = useContext(AuthContext);
   let isTabletMid = useMediaQuery({ query: "(max-width: 768px)" });
   const [open, setOpen] = useState(isTabletMid ? false : true);
   const sidebarRef = useRef();
@@ -105,7 +108,7 @@ const Sidebar = () => {
             width={105}
             alt={105}
           />
-          <span className="text-xl whitespace-pre">Sys Verif2.0</span>
+          <span className="text-xl whitespace-pre">{auth?.user} - V1.0</span>         
         </div>
 
         <div className="flex flex-col  h-full">
@@ -142,9 +145,9 @@ const Sidebar = () => {
               </div>
             )}
             <li>
-              <NavLink to={"/settings"} className="link">
+              <NavLink to={"/login"} className="link">
                 <SlSettings size={23} className="min-w-max" />
-                Settings
+                Cerrar Sesion
               </NavLink>
             </li>
           </ul>
